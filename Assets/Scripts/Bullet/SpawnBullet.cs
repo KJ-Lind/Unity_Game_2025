@@ -14,14 +14,15 @@ public class SpawnBullet : MonoBehaviour
     private float shootResetCD_ = 1.0f;
     private float bSpeed = 8.0f;
     private float shootTimer_ = 0.0f;
-    private float minShootFrequency_ = 0.1f;
+    private float minShootFrequency_ = 0.2f;
     private float maxShootFrequency_ = 1.0f;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        shootCooldown_ = maxShootFrequency_;
+        shootTimer_ = maxShootFrequency_;
     }
 
     // Update is called once per frame
@@ -31,8 +32,8 @@ public class SpawnBullet : MonoBehaviour
         if (shootTimer_ <= Time.time)
         {
             Shoot();
-            shootTimer_ = Mathf.Clamp(shootCooldown_, maxShootFrequency_, maxShootFrequency_) + Time.time;
-            if(Mathf.Clamp(shootCooldown_, maxShootFrequency_, maxShootFrequency_) > maxShootFrequency_)
+            shootTimer_ = shootCooldown_ + Time.time;
+            if(shootCooldown_ > minShootFrequency_)
             {
                 shootCooldown_ -= 0.1f;
             }

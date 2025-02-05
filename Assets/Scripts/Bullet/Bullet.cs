@@ -12,7 +12,10 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        boss_manager_ = GameObject.FindGameObjectWithTag("BossSpawn").GetComponent<BossManager>();
+        if(GameObject.FindGameObjectWithTag("BossSpawn") != null)
+        {
+            boss_manager_ = GameObject.FindGameObjectWithTag("BossSpawn").GetComponent<BossManager>();
+        }
     }
 
     private void Update()

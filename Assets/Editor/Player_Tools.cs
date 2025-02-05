@@ -24,9 +24,9 @@ public class Player_Tools : EditorWindow
         GetWindow(typeof(Player_Tools));
     }
 
+
     private void OnGUI()
     {
-        GetData();
         GUILayout.Label("Player Settings", EditorStyles.largeLabel);
         GUILayout.Label("Player Lives", EditorStyles.boldLabel);
         playerLives = EditorGUILayout.IntField("Player Lives", playerLives);

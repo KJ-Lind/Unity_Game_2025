@@ -6,7 +6,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [Header("Boss_Movement")]
-    private float radius_;
+    [SerializeField] private float radius_ = 12.0f;
     private float angle_ = 0.0f;
 
 
@@ -17,12 +17,18 @@ public class Movement : MonoBehaviour
 
     private Player player_;
     private SpawnBullet bull_;
-    public Transform enemyPos_;
+    private Transform enemyPos_;
+    private Game_Manager manager_;
+    private Rigidbody2D rb_;
 
     private bool dirChange_;
     // Start is called before the first frame update
     void Start()
     {
+        rb_ = GetComponent<Rigidbody2D>();
+
+        manager_ = GameObject.FindWithTag("GM").GetComponent<Game_Manager>();
+
         bull_ = GetComponent<SpawnBullet>();
         player_ = GetComponent<Player>();
 
@@ -41,7 +47,49 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        switch (manager_.currLevels_)
+        {
+            case Game_Manager.Levels.kDefaultLevel:
+
+                PlayerDefaultMovement();
+
+                break;
+
+            case Game_Manager.Levels.kBossLevel:
+
+                PlayerBossMovement();
+
+                break;
+        }
+    }
+
+    private void PlayerDefaultMovement()
+    {
+        Vector3 pos = GameObject.Find("Black_Hole_1").GetComponent<Transform>().position;
+
+        gameObject.transform.rotation = Quaternion.Euler(0.0f,0.0f,-90.0f);
+
+        transform.position = transform.position + new Vector3(0.0f, player_.currSpeed_ * Time.deltaTime, 0.0f);
+        //transform.position = new Vector3(pos.x, transform);
+
+        if (Input.touchCount > 0)
+        {
+            Debug.Log(Input.touchCount);
+            Touch input = Input.GetTouch(0);
+
+            if (input.phase == TouchPhase.Began)
+            {
+                player_.currSpeed_ *= -1;
+                bull_.ResetTimerIncrement();
+            }
+        }
+
+    }
+
+    private void PlayerBossMovement()
+    {
+        Transform enemyPos_ = GameObject.FindWithTag("BossSpawn").GetComponent<Transform>();
+
         Vector3 rotation;
         Vector3 look = transform.InverseTransformPoint(enemyPos_.transform.position);
 
@@ -76,47 +124,12 @@ public class Movement : MonoBehaviour
 
             if (input.phase == TouchPhase.Began)
             {
-                if (dirChange_ != false) dirChange_ = false;
-                else if (dirChange_ != true) dirChange_ = true;
-                ResetSpeed();
                 player_.currSpeed_ *= -1;
                 bull_.ResetTimerIncrement();
             }
         }
         //IncrementSpeed();
         angle_ += player_.currSpeed_ * Time.deltaTime;
-
-    }
-
-    private void IncrementSpeed()
-    {
-        if(dirChange_ == false) 
-        {
-            if (player_.currSpeed_ < player_.GetMaxSpeed())
-            {
-                player_.currSpeed_ += 0.1f;
-            }
-        }else if (dirChange_ == true)
-        {
-            if (player_.currSpeed_ > player_.GetMaxSpeed() * -1)
-            {
-                player_.currSpeed_ -= 0.1f;
-            }
-        }
-        
-        
-    }
-
-    private void ResetSpeed()
-    {
-        if(dirChange_ == false) 
-        {
-            player_.currSpeed_ = player_.GetMinSpeed();
-        }
-        else if (dirChange_ == true)
-        {
-            player_.currSpeed_ = player_.GetMinSpeed() * -1;
-        }
     }
 
     public void SetRadius(float rad)

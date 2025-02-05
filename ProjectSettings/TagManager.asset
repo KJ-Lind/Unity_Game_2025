@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Boss
+  - Bullet
+  - BulletSpawn
+  - BossSpawn
+  - GM
   layers:
   - Default
   - TransparentFX
@@ -40,4 +45,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Entities
+    uniqueID: 2928127835
+    locked: 0
+  - name: Effects
+    uniqueID: 856236111
+    locked: 0
+  - name: Other
+    uniqueID: 2742560827
+    locked: 0
+  - name: BackGround
+    uniqueID: 3881319213
     locked: 0
