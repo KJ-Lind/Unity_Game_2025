@@ -9,6 +9,7 @@ public class SpawnBullet : MonoBehaviour
 
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform pl_;
 
     private float shootCooldown_ = 1.0f;
     private float shootResetCD_ = 1.0f;
@@ -21,6 +22,7 @@ public class SpawnBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pl_ = GetComponentInParent<Transform>();
         shootCooldown_ = maxShootFrequency_;
         shootTimer_ = maxShootFrequency_;
     }
@@ -41,6 +43,8 @@ public class SpawnBullet : MonoBehaviour
     }
     private void Shoot()
     {
+        Debug.Log(pl_.rotation);
+       
         GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation);
         bullet.GetComponent<Rigidbody2D>().velocity = spawnPoint.up * bSpeed;
     }

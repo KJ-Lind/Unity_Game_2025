@@ -28,30 +28,24 @@ public class Circle : MonoBehaviour
     void Update()
     {
 
-        switch (manager_.currLevels_)
+        if (manager_.InBossStage)
         {
-            case Game_Manager.Levels.kDefaultLevel:
-
-                if (!IsDrawen)
-                {
-                    Hole_1 = GameObject.Find("Black_Hole_1").GetComponent<Transform>();
-                    Hole_2 = GameObject.Find("Black_Hole_2").GetComponent<Transform>();
-                    DrawLine();
-                    IsDrawen = true;
-                }
-
-                break;
-
-            case Game_Manager.Levels.kBossLevel:
-
-                if (!IsDrawen)
-                {
-                    Center_ = GameObject.FindWithTag("BossSpawn").GetComponent<Transform>();
-                    DrawCircle(points_, radius_);
-                    IsDrawen = true;
-                }
-
-                break;
+            if (!IsDrawen)
+            {
+                Center_ = GameObject.FindWithTag("BossSpawn").GetComponent<Transform>();
+                DrawCircle(points_, radius_);
+                IsDrawen = true;
+            }
+        }
+        else if (!manager_.InBossStage)
+        {
+            if (!IsDrawen)
+            {
+                Hole_1 = GameObject.Find("Black_Hole_1").GetComponent<Transform>();
+                Hole_2 = GameObject.Find("Black_Hole_2").GetComponent<Transform>();
+                DrawLine();
+                IsDrawen = true;
+            }
         }
     }
 

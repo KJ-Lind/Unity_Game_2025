@@ -47,28 +47,20 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (manager_.currLevels_)
+
+        if (manager_.InBossStage)
         {
-            case Game_Manager.Levels.kDefaultLevel:
-
-                PlayerDefaultMovement();
-
-                break;
-
-            case Game_Manager.Levels.kBossLevel:
-
-                PlayerBossMovement();
-
-                break;
+            PlayerBossMovement();
         }
+        else if (!manager_.InBossStage)
+        {
+            PlayerDefaultMovement();
+        }
+
     }
 
     private void PlayerDefaultMovement()
     {
-        Vector3 pos = GameObject.Find("Black_Hole_1").GetComponent<Transform>().position;
-
-        gameObject.transform.rotation = Quaternion.Euler(0.0f,0.0f,-90.0f);
-
         transform.position = transform.position + new Vector3(0.0f, player_.currSpeed_ * Time.deltaTime, 0.0f);
         //transform.position = new Vector3(pos.x, transform);
 

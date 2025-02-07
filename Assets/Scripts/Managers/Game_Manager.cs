@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class Game_Manager : MonoBehaviour
 {
-    public enum Levels
+    public bool InBossStage;
+
+    Movement pl_mov;
+
+    private void Start()
     {
-        kDefaultLevel = 0,
-        kBossLevel
-    };
-    
-    public Levels currLevels_ = Levels.kBossLevel;
+        pl_mov = GameObject.FindWithTag("Player").GetComponent<Movement>();
+
+    }
+
+    public void LevelChange()
+    {
+        
+    }
+
 
 }

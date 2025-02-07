@@ -15,7 +15,12 @@ public class Bullet : MonoBehaviour
         if(GameObject.FindGameObjectWithTag("BossSpawn") != null)
         {
             boss_manager_ = GameObject.FindGameObjectWithTag("BossSpawn").GetComponent<BossManager>();
+                
+            gameObject.transform.Rotate(boss_manager_.transform.position);
+        
         }
+
+
     }
 
     private void Update()
