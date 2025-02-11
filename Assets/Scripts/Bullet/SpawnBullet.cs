@@ -43,8 +43,6 @@ public class SpawnBullet : MonoBehaviour
     }
     private void Shoot()
     {
-        Debug.Log(pl_.rotation);
-       
         GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation);
         bullet.GetComponent<Rigidbody2D>().velocity = spawnPoint.up * bSpeed;
     }

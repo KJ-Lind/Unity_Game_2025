@@ -9,6 +9,7 @@ TagManager:
   - BulletSpawn
   - BossSpawn
   - GM
+  - BL_Hole
   layers:
   - Default
   - TransparentFX
@@ -54,6 +55,9 @@ TagManager:
     locked: 0
   - name: Other
     uniqueID: 2742560827
+    locked: 0
+  - name: BackGround
+    uniqueID: 3881319213
     locked: 0
   - name: BackGround
     uniqueID: 3881319213

@@ -19,12 +19,14 @@ public class Movement : MonoBehaviour
     private SpawnBullet bull_;
     private Transform enemyPos_;
     private Game_Manager manager_;
+    private Transform tr_;
     private Rigidbody2D rb_;
 
     private bool dirChange_;
     // Start is called before the first frame update
     void Start()
     {
+        tr_ = gameObject.transform;
         rb_ = GetComponent<Rigidbody2D>();
 
         manager_ = GameObject.FindWithTag("GM").GetComponent<Game_Manager>();
@@ -66,7 +68,6 @@ public class Movement : MonoBehaviour
 
         if (Input.touchCount > 0)
         {
-            Debug.Log(Input.touchCount);
             Touch input = Input.GetTouch(0);
 
             if (input.phase == TouchPhase.Began)
@@ -111,7 +112,6 @@ public class Movement : MonoBehaviour
 
         if (Input.touchCount > 0)
         {
-            Debug.Log(Input.touchCount);
             Touch input = Input.GetTouch(0);
 
             if (input.phase == TouchPhase.Began)
