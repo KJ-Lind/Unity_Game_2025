@@ -33,9 +33,8 @@ public class Pl_Movement : MonoBehaviour
         rb_.MovePosition(rb_.position + m_Movement * m_MovementSpeed * Time.fixedDeltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collision!!!");
         if(collision.gameObject.tag == "BL_Hole")
         {
             m_Movement.y *= -1.0f;

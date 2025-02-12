@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 1.5
-  bulletDmg_: 5
+  bulletDmg_: 0
 --- !u!58 &2090217610293421160
 CircleCollider2D:
   m_ObjectHideFlags: 0

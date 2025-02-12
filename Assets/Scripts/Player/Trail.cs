@@ -7,6 +7,7 @@ public class Trail : MonoBehaviour
     public float trailDelay_;
     private float trailDelaySeconds_;
     public GameObject trail;
+    public Vector3 offset = new Vector3(0.0f,1.0f, 0.0f);
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public class Trail : MonoBehaviour
         }
         else
         {
-            GameObject currTrail = Instantiate(trail, transform.position, transform.rotation);
+            GameObject currTrail = Instantiate(trail, transform.position + offset, transform.rotation);
             trailDelaySeconds_ = trailDelay_;
             Destroy(currTrail, 0.55f);
         }
