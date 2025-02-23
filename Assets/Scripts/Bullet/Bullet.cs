@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float life = 0.2f;
+    public float life = 1f;
     public float bulletDmg_ = 5.0f;
 
     BossManager boss_manager_;
