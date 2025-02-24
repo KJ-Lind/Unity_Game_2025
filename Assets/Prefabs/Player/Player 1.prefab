@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 1482300145426111603}
-  bulletPrefab: {fileID: 484255815417184796, guid: 814dfc4d8d72b0345a6384958dd76e93, type: 3}
+  bulletPrefab: {fileID: 8461852377591700291, guid: bbf90f3ed0e88a4498040e8f9246f3c8, type: 3}
   bSpeed: 8
   shootTimer_: 0
   maxShootFrequency_: 1

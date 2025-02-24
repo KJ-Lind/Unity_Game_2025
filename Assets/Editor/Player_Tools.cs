@@ -17,7 +17,7 @@ public class Player_Tools : EditorWindow
     float playerMaxAtkSpd;
     float playerMinAtkSpd;
 
-    [MenuItem("Tool/Player")]
+    [MenuItem("Tools/Mangers/Player")]
 
     public static void ShowWindow()
     {
