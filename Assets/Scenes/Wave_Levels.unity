@@ -623,13 +623,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves_:
   - waveName_: Wave 1
-    enemy_: {fileID: 1825218109057354897, guid: 5fd741909f61c77449580aea2016b4ba, type: 3}
+    type_: 0100000001000000
     enemyCount: 2
     spawnRate_: 1.5
   - waveName_: Wave 2
-    enemy_: {fileID: 1825218109057354897, guid: 5fd741909f61c77449580aea2016b4ba, type: 3}
+    type_: 01000000010000000400000004000000
     enemyCount: 4
     spawnRate_: 1.5
+  enemies_:
+  - {fileID: 1825218109057354897, guid: 5fd741909f61c77449580aea2016b4ba, type: 3}
+  - {fileID: 6599550325907803354, guid: c9f5937adcad2c24797a3440a434d215, type: 3}
+  - {fileID: 7763460857298186382, guid: b1cf4b6e00fa3ce44b30a07a427cdda1, type: 3}
+  - {fileID: 3395565153622516457, guid: bf10d1ca1df78474f93df6ca04294f71, type: 3}
   spawnPoints:
   - {fileID: 247109389}
   waveIndex_: 0

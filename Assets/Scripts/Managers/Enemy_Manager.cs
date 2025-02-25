@@ -6,7 +6,7 @@ using UnityEngine;
 public class Wave
 {
     public string waveName_;
-    public Transform enemy_;
+    public int[] type_;
     public int enemyCount;
     public float spawnRate_;
 }
@@ -20,8 +20,9 @@ public enum SpawnState
 
 public class Enemy_Manager : MonoBehaviour
 {
-
+    int EnemySpawnIndex_ = 0;
     public Wave[] waves_;
+    public Transform[] enemies_;
 
     public Transform[] spawnPoints;
 
@@ -116,7 +117,7 @@ public class Enemy_Manager : MonoBehaviour
 
         for(int i = 0; i < currWave_.enemyCount; i++)
         {
-            SpawningEnemy(currWave_.enemy_);
+            SpawningEnemy(currWave_.type_[i] - 1);
             yield return new WaitForSeconds(1f/currWave_.spawnRate_);
         }
 
@@ -125,11 +126,13 @@ public class Enemy_Manager : MonoBehaviour
         yield break;
     }
 
-    void SpawningEnemy(Transform _enemy)
+    void SpawningEnemy(int _enemy)
     {
-        Debug.Log("Spawn Enemy:" + _enemy.name);
+        Debug.Log("Spawn Enemy:" + enemies_[_enemy].name);
         Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        Instantiate(_enemy, _sp.position, _sp.rotation);
+        Transform enemy = Transform.Instantiate<Transform>(enemies_[_enemy], _sp.position, _sp.rotation);
+        Enemy_Behavior mg_ = enemy.GetComponent<Enemy_Behavior>();
+        mg_.SetType(_enemy);
     }
 
 }
