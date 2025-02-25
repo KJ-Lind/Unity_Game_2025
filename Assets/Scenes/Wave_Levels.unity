@@ -180,6 +180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1b159c03decae14a8a545b546cbf8ee, type: 3}
+--- !u!4 &247109389 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 854086988241418796, guid: b1b159c03decae14a8a545b546cbf8ee, type: 3}
+  m_PrefabInstance: {fileID: 854086987468495560}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &523902823
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,9 +626,14 @@ MonoBehaviour:
     enemy_: {fileID: 1825218109057354897, guid: 5fd741909f61c77449580aea2016b4ba, type: 3}
     enemyCount: 2
     spawnRate_: 1.5
-  spawnPoints: []
+  - waveName_: Wave 2
+    enemy_: {fileID: 1825218109057354897, guid: 5fd741909f61c77449580aea2016b4ba, type: 3}
+    enemyCount: 4
+    spawnRate_: 1.5
+  spawnPoints:
+  - {fileID: 247109389}
   waveIndex_: 0
-  timeBetweenWaves: 5
+  timeBetweenWaves: 0
   state_: 2
 --- !u!4 &1950312434
 Transform:
