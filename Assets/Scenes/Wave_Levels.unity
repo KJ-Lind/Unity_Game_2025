@@ -616,8 +616,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe40e897efbdd24092fea1a91edfb44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waves_: []
+  waves_:
+  - waveName_: Wave 1
+    enemy_: {fileID: 1825218109057354897, guid: 5fd741909f61c77449580aea2016b4ba, type: 3}
+    enemyCount: 2
+    spawnRate_: 1.5
   spawnPoints: []
+  waveIndex_: 0
   timeBetweenWaves: 5
   state_: 2
 --- !u!4 &1950312434

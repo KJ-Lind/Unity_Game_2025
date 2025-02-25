@@ -25,7 +25,7 @@ public class Enemy_Manager : MonoBehaviour
 
     public Transform[] spawnPoints;
 
-    private int waveIndex_ = 0;
+    public int waveIndex_ = 0;
     public float timeBetweenWaves = 5f;
     private float waveCountdown_ = 0f;
 
@@ -37,7 +37,7 @@ public class Enemy_Manager : MonoBehaviour
     {
         if (spawnPoints.Length == 0)
         {
-            Debug.Log("ERROR no spawn point");
+            //Debug.Log("ERROR no spawn point");
         }
 
         waveCountdown_ = timeBetweenWaves;
@@ -49,10 +49,12 @@ public class Enemy_Manager : MonoBehaviour
         {
             if (!EnemyIsAlive())
             {
+                
                 WaveCompleted();
             }
             else
             {
+                
                 return;
             }
         }
@@ -73,29 +75,32 @@ public class Enemy_Manager : MonoBehaviour
 
     bool EnemyIsAlive()
     {
+
         searchCountdown_ -= Time.deltaTime;
-        if (waveCountdown_ <= 0f)
+        if (searchCountdown_ <= 0f)
         {
+            GameObject go = GameObject.FindWithTag("Enemy");
             searchCountdown_ = 1f;
-            if (GameObject.FindGameObjectsWithTag("Enemy") == null)
+            if (GameObject.FindWithTag("Enemy") == null)
             {
+                Debug.Log("ENEMY DEAD");
                 return false;
             }
         }
+        Debug.Log("ENEMY ALIVE");
         return true;
     }
 
     void WaveCompleted()
     {
         Debug.Log("Wave Complete");
-        
         state_ = SpawnState.kCounting;
         waveCountdown_ = timeBetweenWaves;
 
         if(waveIndex_ + 1  > waves_.Length - 1)
         {
             waveIndex_ = 0;
-            Debug.Log("Waves Complete");
+            //Debug.Log("Waves Complete");
         }
         else
         {
