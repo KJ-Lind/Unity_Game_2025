@@ -47,48 +47,5 @@ public class SpawnBullet : MonoBehaviour
         bullet.GetComponent<Rigidbody2D>().velocity = spawnPoint.up * bSpeed;
     }
 
-    // Setters
-
-    public void ResetTimerIncrement()
-    {
-        shootCooldown_ = shootResetCD_;
-    }
-
-    public void SetShootCD(float CD)
-    {
-        shootResetCD_ = CD;
-    }
-    public void SetBulletSpeed(float spd)
-    {
-        bSpeed = spd;
-    }
-    public void SetMinShootFrequency(float min)
-    {
-        minShootFrequency_= min;
-    }
-    public void SetMaxShootFrequency(float max)
-    {
-        maxShootFrequency_ = max;
-    }
-
-    // Getters
-
-    public float GetShootCD()
-    {
-        return shootResetCD_;
-    }
-    public float GetBulletSpeed()
-    {
-        return bSpeed;
-    }
-    public float GetMinShootFrequency()
-    {
-        return minShootFrequency_;
-    }
-    public float GetMaxShootFrequency()
-    {
-        return maxShootFrequency_;
-    }
-
 }
 

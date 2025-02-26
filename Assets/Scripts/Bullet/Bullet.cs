@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public Vector2 direction = new Vector2(1,0);
+    public Vector2 velocity;
+    public float bSpeed = 2f;
     public float life = 1f;
     public float bulletDmg_ = 5.0f;
 
@@ -12,7 +15,8 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        if(GameObject.FindGameObjectWithTag("BossSpawn") != null)
+        Destroy(gameObject, life);
+        if (GameObject.FindGameObjectWithTag("BossSpawn") != null)
         {
             boss_manager_ = GameObject.FindGameObjectWithTag("BossSpawn").GetComponent<BossManager>();
                 
@@ -23,17 +27,33 @@ public class Bullet : MonoBehaviour
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        Destroy(gameObject, life);
+        Vector2 pos = transform.position;
+
+        pos += velocity * Time.fixedDeltaTime;
+
+        transform.position = pos;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void Update()
+    {
+        velocity = direction * bSpeed;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Boss")
         {
             DestroyBull();
             boss_manager_.DamageBoss(bulletDmg_);
+
+        }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            DestroyBull();
+            Destroy(collision.gameObject);
 
         }
     }

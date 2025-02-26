@@ -4,21 +4,31 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    [SerializeField] GameObject enemyBullPrefab_;
-    [SerializeField] Transform Spawnpoint_;
+    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private GameObject bulletPrefab;
 
-    public float bSpeed_ = 5.0f;
+    [SerializeField] private float shootTimer_ = 0.0f;
+    [SerializeField] private float maxShootFrequency_ = 1.0f;
+    // Update is called once per frame
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        shootTimer_ = maxShootFrequency_;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        shootTimer_ -= Time.deltaTime;
+        if (shootTimer_ < 0f)
+        {
+            shoot();
+            shootTimer_ = maxShootFrequency_;
+        }
+    }
+
+    private void shoot()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 
 }

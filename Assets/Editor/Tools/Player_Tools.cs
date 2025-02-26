@@ -70,10 +70,10 @@ public class Player_Tools : EditorWindow
         playerRadius = mov.GetRadius();
 
         // Shooting data
-        playerShotCD = bull.GetShootCD();
-        playerBulletSpeed = bull.GetBulletSpeed();
-        playerMaxAtkSpd = bull.GetMaxShootFrequency();
-        playerMinAtkSpd = bull.GetMinShootFrequency();
+        //playerShotCD = bull.GetShootCD();
+        //playerBulletSpeed = bull.GetBulletSpeed();
+        //playerMaxAtkSpd = bull.GetMaxShootFrequency();
+        //playerMinAtkSpd = bull.GetMinShootFrequency();
 
     }
     private void ApplySettings()
@@ -97,9 +97,9 @@ public class Player_Tools : EditorWindow
         mov.SetRadius(playerRadius);
 
         // Setting players shooting data
-        bull.SetShootCD(playerShotCD);
-        bull.SetBulletSpeed(playerBulletSpeed);
-        bull.SetMaxShootFrequency(playerMaxAtkSpd);
-        bull.SetMinShootFrequency(playerMinAtkSpd);
+        //bull.SetShootCD(playerShotCD);
+        //bull.SetBulletSpeed(playerBulletSpeed);
+        //bull.SetMaxShootFrequency(playerMaxAtkSpd);
+        //bull.SetMinShootFrequency(playerMinAtkSpd);
     }
 }

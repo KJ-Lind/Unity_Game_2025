@@ -73,7 +73,7 @@ public class Movement : MonoBehaviour
             if (input.phase == TouchPhase.Began)
             {
                 player_.currSpeed_ *= -1;
-                bull_.ResetTimerIncrement();
+                //bull_.ResetTimerIncrement();
             }
         }
 
@@ -117,7 +117,7 @@ public class Movement : MonoBehaviour
             if (input.phase == TouchPhase.Began)
             {
                 player_.currSpeed_ *= -1;
-                bull_.ResetTimerIncrement();
+                //bull_.ResetTimerIncrement();
             }
         }
         //IncrementSpeed();

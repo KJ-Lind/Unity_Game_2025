@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy_Behavior : MonoBehaviour
 {
-
-
-
+    [SerializeField] GameObject pl_;
     [SerializeField] private int enemyType_;
     GameObject bullPrefab_;
     public float x_pos;
@@ -16,9 +15,15 @@ public class Enemy_Behavior : MonoBehaviour
     float timecounter = 0;
     Vector2 initpos;
 
+    float waitTime = 2f;
+    Vector2 velocity;
+    float speed = 8f;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        pl_ = GameObject.FindWithTag("Player");
         x_pos = Random.Range(-1.0f, 10f);
         transform.position.Set(Random.Range(-4.5f, 4.5f), transform.position.x, transform.position.z);
         initpos = new Vector2(x_pos, transform.position.y);
@@ -31,24 +36,6 @@ public class Enemy_Behavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (enemyType_)
-        {
-            case 0:
-                Type_1();
-                break;
-
-            case 1:
-                Type_2();
-                break;
-
-            case 2:
-                Type_3();
-                break;
-
-            case 3:
-                Type_4();
-                break;
-        }
 
     }
 
@@ -70,6 +57,10 @@ public class Enemy_Behavior : MonoBehaviour
 
             case 3:
                 Pattern_4();
+                break;
+
+            case 4:
+                Pattern_5();
                 break;
         }
 
@@ -116,7 +107,11 @@ public class Enemy_Behavior : MonoBehaviour
 
     void Pattern_3()
     {
+        timecounter += Time.deltaTime * movSpd_;
+        float cos = Mathf.Cos(timecounter) * scale_;
+        float sin = Mathf.Sin(timecounter) * scale_;
 
+        transform.position = new Vector2(initpos.x, initpos.y + (sin * 1.5f));
     }
 
     void Pattern_4()
@@ -127,29 +122,36 @@ public class Enemy_Behavior : MonoBehaviour
 
         transform.position = new Vector2(initpos.x + cos, initpos.y + (sin * 2f));
     }
-
-    void Type_1()
+    void Pattern_5()
     {
+        if(waitTime <= 0)
+        {
+            Vector2 pos = transform.position;
 
+            pos += velocity * Time.deltaTime;
+
+            transform.position = pos;
+        }
+        else
+        {
+            waitTime -= Time.deltaTime;
+            Vector2 dir = pl_.transform.position - transform.position;
+            Debug.Log("Player Pos:" + pl_.transform.position);
+            dir.Normalize();
+            velocity = dir * speed;
+            float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
+
+            transform.rotation = Quaternion.Euler(Vector3.forward * (angle + 180f));
+        }
+
+        if(transform.position.x < -12.0f) 
+        {
+            Destroy(gameObject);
+        }
     }
 
-    void Type_2()
-    {
 
-    }
-
-    void Type_3()
-    {
-
-    }
-
-    void Type_4()
-    {
-
-    }
-
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Bullet")
         {

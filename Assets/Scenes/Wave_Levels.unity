@@ -623,11 +623,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves_:
   - waveName_: Wave 1
-    type_: 0100000001000000
+    type_: 0200000002000000
     enemyCount: 2
-    spawnRate_: 1.5
+    spawnRate_: 2
   - waveName_: Wave 2
-    type_: 01000000010000000400000004000000
+    type_: 01000000010000000200000002000000
     enemyCount: 4
     spawnRate_: 1.5
   enemies_:
@@ -635,6 +635,7 @@ MonoBehaviour:
   - {fileID: 6599550325907803354, guid: c9f5937adcad2c24797a3440a434d215, type: 3}
   - {fileID: 7763460857298186382, guid: b1cf4b6e00fa3ce44b30a07a427cdda1, type: 3}
   - {fileID: 3395565153622516457, guid: bf10d1ca1df78474f93df6ca04294f71, type: 3}
+  - {fileID: 4798084986137722130, guid: 6a060a581c5faab4d933288b4a87a9de, type: 3}
   spawnPoints:
   - {fileID: 247109389}
   waveIndex_: 0
@@ -721,6 +722,10 @@ PrefabInstance:
     - target: {fileID: 2322277764485407989, guid: 061998e693122744b8d0d7c066d87d3e, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4031620533960676878, guid: 061998e693122744b8d0d7c066d87d3e, type: 3}
+      propertyPath: m_MovementSpeed
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5463860221791700200, guid: 061998e693122744b8d0d7c066d87d3e, type: 3}
       propertyPath: m_RootOrder
