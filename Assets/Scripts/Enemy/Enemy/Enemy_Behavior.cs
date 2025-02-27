@@ -4,6 +4,12 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 
+enum EnemyState
+{
+    kPositioning,
+    kAttacking
+};
+
 public class Enemy_Behavior : MonoBehaviour
 {
     [SerializeField] GameObject pl_;
@@ -19,10 +25,13 @@ public class Enemy_Behavior : MonoBehaviour
     Vector2 velocity;
     float speed = 8f;
 
+    EnemyState enemyState_;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        enemyState_ = EnemyState.kPositioning;
         pl_ = GameObject.FindWithTag("Player");
         x_pos = Random.Range(-1.0f, 10f);
         transform.position.Set(Random.Range(-4.5f, 4.5f), transform.position.x, transform.position.z);
@@ -41,37 +50,53 @@ public class Enemy_Behavior : MonoBehaviour
 
     private void FixedUpdate()
     {
-        switch (enemyType_)
+        if(enemyState_ == EnemyState.kPositioning)
         {
-            case 0:
-                Pattern_1();
-                break;
+            if(transform.position.x > x_pos)
+            {
+                Vector2 pos = transform.position;
 
-            case 1:
-                Pattern_2();
-                break;
+                pos.x = pos.x - movSpd_ * Time.deltaTime;
 
-            case 2:
-                Pattern_3();
-                break;
-
-            case 3:
-                Pattern_4();
-                break;
-
-            case 4:
-                Pattern_5();
-                break;
+                transform.position = pos;
+            }
+            else
+            {
+                enemyState_ = EnemyState.kAttacking;
+            }
         }
+        if(enemyState_ == EnemyState.kAttacking)
+        {
+            switch (enemyType_)
+            {
+                case 0:
+                    Pattern_1();
+                    break;
 
+                case 1:
+                    Pattern_2();
+                    break;
+
+                case 2:
+                    Pattern_3();
+                    break;
+
+                case 3:
+                    Pattern_4();
+                    break;
+
+                case 4:
+                    Pattern_5();
+                    break;
+            }
+        }
+       
     }
 
     void Pattern_1()
     {
 
         Vector2 pos = transform.position;
-        
-        pos.x = x_pos;
 
         if(pos.y > 4.5f)
         {
@@ -99,7 +124,7 @@ public class Enemy_Behavior : MonoBehaviour
             movSpd_ *= -1f;
         }
         float sin = Mathf.Sin(pos.y);
-        pos.x = x_pos + sin * 2.0f;
+        pos.x = sin * 2.0f;
         pos.y = pos.y + movSpd_ * Time.deltaTime;
 
         transform.position = pos;
@@ -116,11 +141,7 @@ public class Enemy_Behavior : MonoBehaviour
 
     void Pattern_4()
     {
-        timecounter += Time.deltaTime * movSpd_;
-        float cos = Mathf.Cos(timecounter) * scale_;
-        float sin = Mathf.Sin(timecounter) * scale_;
-
-        transform.position = new Vector2(initpos.x + cos, initpos.y + (sin * 2f));
+        transform.Rotate(0.0f, 0.0f, 300.0f * Time.deltaTime);
     }
     void Pattern_5()
     {
@@ -156,6 +177,11 @@ public class Enemy_Behavior : MonoBehaviour
         if(collision.gameObject.tag == "Bullet")
         {
             Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Player")
+        {
             Destroy(gameObject);
         }
     }

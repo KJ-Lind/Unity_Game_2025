@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Enemy_Bullet : MonoBehaviour
 {
-    public Vector2 direction = new Vector2(-1, 0);
+    public Vector2 direction;
     public Vector2 velocity;
     public float bSpeed = 8f;
-    public float life = 3f;
     public float bulletDmg_ = 5.0f;
 
     BossManager boss_manager_;
 
     private void Start()
     {
-        Destroy(gameObject, life);
+
+        Destroy(gameObject, 6.0f);
+
     }
 
     private void FixedUpdate()
@@ -24,11 +25,17 @@ public class Enemy_Bullet : MonoBehaviour
         pos += velocity * Time.fixedDeltaTime;
 
         transform.position = pos;
+
+        if(transform.position.x < -12.0f) 
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Update()
     {
         velocity = direction * bSpeed;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,14 +43,7 @@ public class Enemy_Bullet : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-            DestroyBull();
-            //Destroy(collision.gameObject);
-
+            Destroy(gameObject);
         }
-    }
-
-    public void DestroyBull()
-    {
-        Destroy(gameObject);
     }
 }

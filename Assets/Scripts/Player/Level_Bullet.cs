@@ -8,6 +8,7 @@ public class Level_Bullet : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField]private float shootTimer_ = 0.0f;
     [SerializeField] private float maxShootFrequency_ = 1.0f;
+    [SerializeField] private bool CanShoot = true;
     // Update is called once per frame
 
     private void Start()
@@ -18,7 +19,7 @@ public class Level_Bullet : MonoBehaviour
     void Update()
     {
         shootTimer_ -= Time.deltaTime;
-        if(shootTimer_ < 0f)
+        if(shootTimer_ < 0f && CanShoot)
         {
             shoot();
             shootTimer_ = maxShootFrequency_;

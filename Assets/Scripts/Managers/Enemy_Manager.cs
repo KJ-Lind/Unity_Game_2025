@@ -32,6 +32,8 @@ public class Enemy_Manager : MonoBehaviour
 
     private float searchCountdown_ = 1f;
 
+    public float atkRate = 1.0f;
+
     public SpawnState state_ = SpawnState.kCounting;
 
     private void Start()

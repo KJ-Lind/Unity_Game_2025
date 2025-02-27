@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7763460857298186382}
   - component: {fileID: -9146406993516198491}
   - component: {fileID: 8725898579026630002}
-  - component: {fileID: -7923510225957746778}
+  - component: {fileID: -2944427107383518756}
   m_Layer: 0
   m_Name: Enemy_3
   m_TagString: Enemy
@@ -127,7 +127,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -160,7 +160,7 @@ MonoBehaviour:
   x_pos: 0
   movSpd_: 3
   scale_: 1.5
---- !u!50 &-7923510225957746778
+--- !u!50 &-2944427107383518756
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -175,9 +175,9 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
